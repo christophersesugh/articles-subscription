@@ -5,9 +5,7 @@ import { AppRoutes, FullPageErrorFallback } from "components";
 export default function AuthenticatedApp() {
   return (
     <ErrorBoundary FallbackComponent={FullPageErrorFallback}>
-      <main>
-        <AppRoutes />
-      </main>
+      <AppRoutes />
     </ErrorBoundary>
   );
 }

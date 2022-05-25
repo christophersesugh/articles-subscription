@@ -1,13 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-const AuthenticatedApp = React.lazy(() => import("authenticated-app"));
+import { Loading } from "components";
+const AuthenticatedApp = React.lazy(
+  () => import(/* webpackPrefetch: true */ "authenticated-app")
+);
 const UnuthenticatedApp = React.lazy(() => import("unauthenticated-app"));
 
 function App() {
   const user = false;
   return (
-    <React.Suspense fallback="loading">
-      <main className="container mx-0">
+    <main>
+      <React.Suspense fallback={<Loading />}>
         {user ? (
           <Router>
             <AuthenticatedApp />
@@ -15,8 +18,8 @@ function App() {
         ) : (
           <UnuthenticatedApp />
         )}
-      </main>
-    </React.Suspense>
+      </React.Suspense>
+    </main>
   );
 }
 

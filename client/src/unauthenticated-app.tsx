@@ -1,10 +1,22 @@
 import React from "react";
-import { SigninForm } from "components";
+import { Box } from "@mui/material";
+import hero from "assets/hero.jpg";
+
+import { Signin } from "components";
 
 export default function UnauthenticatedApp() {
   return (
-    <main>
-      <SigninForm />
-    </main>
+    <Box
+      component="main"
+      sx={{
+        color: "white",
+        backgroundImage: `url(${hero})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
+      <Signin />
+    </Box>
   );
 }

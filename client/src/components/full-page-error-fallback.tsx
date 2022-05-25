@@ -1,7 +1,9 @@
 import React from "react";
 
 const FullPageErrorFallback = () => {
-  return <div>full-page-error-boundary</div>;
+  return (
+    <div className="h-full w-full justify-center">full-page-error-boundary</div>
+  );
 };
 
 export default FullPageErrorFallback;
