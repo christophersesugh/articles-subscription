@@ -14,6 +14,7 @@ export default function UnauthenticatedApp() {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",
+        filter: "brightness(80%)",
       }}
     >
       <Signin />

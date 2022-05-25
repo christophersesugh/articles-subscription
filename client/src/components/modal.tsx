@@ -1,7 +1,13 @@
 import React from "react";
 import { Box, Button, Dialog } from "@mui/material";
 
-function Modal({ isOpen, setIsOpen, children, ...props }: any) {
+interface ModalProps {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<string>>;
+  children: React.ReactNode;
+}
+
+function Modal({ isOpen, setIsOpen, children }: ModalProps) {
   return (
     <Dialog open={isOpen}>
       <Box

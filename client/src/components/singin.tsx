@@ -29,10 +29,10 @@ export default function Signin() {
         }}
       >
         <Typography component="h1" variant="h3" align="center">
-          High quality articles
+          Quality content articles.
         </Typography>
         <Typography component="p" variant="body1" align="center">
-          Feed your mind with positive content.
+          Feed your mind with the best.
         </Typography>
         <Stack spacing={2} direction="row">
           <Button
@@ -45,7 +45,7 @@ export default function Signin() {
           <Button
             variant="outlined"
             onClick={() => setIsOpen("register")}
-            sx={{ borderColor: "white" }}
+            sx={{ borderColor: "white", color: "white" }}
           >
             register
           </Button>
