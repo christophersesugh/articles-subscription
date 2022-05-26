@@ -17,13 +17,13 @@ interface UserFormElement extends HTMLFormElement {
   readonly elements: FormElements;
 }
 
-interface ModalProps {
+interface FormProps {
   headerText: string;
   buttonText: string;
-  onSubmit: ({ email, password }: { email: string; password: string }) => void;
+  onSubmit: ({ email, password }: FormElements) => void;
 }
 
-function LoginForm({ onSubmit, headerText, buttonText }: ModalProps) {
+function LoginForm({ onSubmit, headerText, buttonText }: FormProps) {
   const { run, isError, isLoading, error } = useAsync();
 
   const handleSubmit = (event: React.FormEvent<UserFormElement>) => {

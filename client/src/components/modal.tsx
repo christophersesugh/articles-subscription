@@ -15,6 +15,7 @@ function Modal({ isOpen, setIsOpen, children }: ModalProps) {
           padding: 4,
           display: "flex",
           flexDirection: "column",
+          backgroundColor: "#f1f1f1",
         }}
       >
         <Button
