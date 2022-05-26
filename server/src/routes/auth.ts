@@ -1,6 +1,7 @@
 import express from "express";
 import { body, validationResult } from "express-validator";
 import User from "../models/user";
+import bcrypt from "bcryptjs";
 
 const router = express.Router();
 
@@ -36,6 +37,11 @@ router.post(
         data: null,
       });
     }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = await User.create({
+      email,
+      password: hashedPassword,
+    });
     res.send("user");
   }
 );
