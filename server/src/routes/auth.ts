@@ -2,6 +2,7 @@ import express from "express";
 import { body, validationResult } from "express-validator";
 import User from "../models/user";
 import bcrypt from "bcryptjs";
+import JWT from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -42,8 +43,71 @@ router.post(
       email,
       password: hashedPassword,
     });
-    res.send("user");
+    const token = JWT.sign(
+      {
+        email: newUser.email,
+      },
+      "jskfnlioweafj9493u9riom95eriodfkleriordkll-i8d8df8df8dfuijdhdjhd",
+      { expiresIn: 30000 }
+    );
+    res.json({
+      errors: [],
+      data: {
+        token,
+        user: {
+          id: newUser._id,
+          email: newUser.email,
+        },
+      },
+    });
   }
 );
+
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) {
+    return res.json({
+      errors: [
+        {
+          msg: "Invalid Credentials.",
+        },
+      ],
+      data: null,
+    });
+  }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    return res.json({
+      errors: [
+        {
+          msg: "Invalid Credentials.",
+        },
+      ],
+      data: null,
+    });
+  }
+
+  const token = JWT.sign(
+    {
+      email: user.email,
+    },
+    process.env.JWT_SECRET as string,
+
+    { expiresIn: 30000 }
+  );
+
+  return res.json({
+    errors: [],
+    data: {
+      token,
+      user: {
+        id: user._id,
+        email: user.email,
+      },
+    },
+  });
+});
 
 export default router;

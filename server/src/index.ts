@@ -1,17 +1,17 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 import authRoutes from "./routes/auth";
 
 const app = express();
 dotenv.config();
 app.use(express.json());
+app.use(cors());
 app.use("/auth", authRoutes);
 
 mongoose
-  .connect(
-    "mongodb+srv://subapp:sesugh185@cluster0.yl0jwci.mongodb.net/?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGO_URI as string)
   .then(() => {
     console.log("connected");
     app.listen(8080, () => {
