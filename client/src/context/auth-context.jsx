@@ -11,9 +11,8 @@ async function getUser() {
   const token = await auth.getToken();
   if (token) {
     const { data } = await client("auth/me", { token });
-    user = data.user;
+    user = data;
   }
-
   return user;
 }
 
@@ -38,7 +37,7 @@ function AuthProvider(props) {
   }, [run]);
 
   const login = (form) => auth.login(form).then((user) => setData(user));
-  const signup = (form) => auth.signup(form).then((user) => setData(user));
+  const register = (form) => auth.register(form).then((user) => setData(user));
   const logout = () => {
     auth.logout();
     setData(null);
@@ -53,7 +52,7 @@ function AuthProvider(props) {
   }
 
   if (isSuccess) {
-    const value = { user, login, signup, logout };
+    const value = { user, login, register, logout };
     return <AuthContext.Provider value={value} {...props} />;
   }
 

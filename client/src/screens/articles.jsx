@@ -1,7 +1,9 @@
 import React from "react";
 import { useAuth } from "context/auth-context";
+import { Toolbar } from "@mui/material";
 
 export default function Articles() {
   const { user } = useAuth();
-  return <h1>{user.email}</h1>;
+  console.log(user);
+  return <Toolbar>{user.email}</Toolbar>;
 }

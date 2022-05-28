@@ -23,7 +23,7 @@ export default function ErrorFallback({ error }) {
             sx={{ color: "red" }}
             align="center"
           >
-            {console.log(error.msg)}
+            {error.message}
           </Typography>
         </Box>
       </Box>

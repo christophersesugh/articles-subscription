@@ -9,7 +9,7 @@ import Navbar from "components/nav-bar";
 export default function AuthenticatedApp() {
   return (
     <Box component="main" sx={{ width: "100vw" }}>
-      <ErrorBoundary FallbackComponent={<ErrorFallback />}>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
         <Navbar />
         <AppRoutes />
       </ErrorBoundary>

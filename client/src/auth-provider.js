@@ -1,7 +1,7 @@
 const localStorageKey = "_auth_provider_token_";
 
-const handleUserResponse = ({ user }) => {
-  window.localStorage.setItem(localStorageKey, user.token);
+const handleUserResponse = (user) => {
+  window.localStorage.setItem(localStorageKey, user.data.token);
   return user;
 };
 
@@ -13,8 +13,8 @@ const login = ({ email, password }) => {
   return client("auth/login", { email, password }).then(handleUserResponse);
 };
 
-const signup = ({ email, password }) => {
-  return client("auth/signup", { email, password }).then(handleUserResponse);
+const register = ({ email, password }) => {
+  return client("auth/register", { email, password }).then(handleUserResponse);
 };
 
 const logout = async () => {
@@ -42,4 +42,4 @@ async function client(endpoint, data) {
   });
 }
 
-export { getToken, login, signup, logout, localStorageKey };
+export { getToken, login, register, logout, localStorageKey };

@@ -38,12 +38,19 @@ export default function SignInForm({ onSubmit, label }) {
         {label}
       </Typography>
       <Stack component="form" spacing={2} onSubmit={handleSubmit}>
-        <TextField type="email" placeholder="Email" id="email" size="small" />
+        <TextField
+          type="email"
+          placeholder="Email"
+          id="email"
+          size="small"
+          required
+        />
         <TextField
           type="password"
           placeholder="Password"
           id="password"
           size="small"
+          required
         />
         <Button type="submit" variant="contained" disabled={isLoading}>
           {isLoading ? <CircularProgress size={25} /> : label}

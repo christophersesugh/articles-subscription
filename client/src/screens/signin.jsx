@@ -6,7 +6,7 @@ import SignInForm from "../components/signin-form";
 
 export default function SignIn() {
   const [isOpen, setIsOpen] = React.useState("none");
-  const { login, signup } = useAuth();
+  const { login, register } = useAuth();
 
   return (
     <Box component="div">
@@ -26,7 +26,7 @@ export default function SignIn() {
 
       {/* register modal */}
       <Modal isOpen={isOpen === "register"} setIsOpen={setIsOpen}>
-        <SignInForm onSubmit={signup} label="Register" />
+        <SignInForm onSubmit={register} label="Register" />
       </Modal>
     </Box>
   );

@@ -1,39 +1,27 @@
 import { Request, Response, NextFunction } from "express";
 import JWT from "jsonwebtoken";
-export const checkAuth = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const secret = "sijkdfsmkcdmkmksdmkmksdk";
+
+// const secret = process.env.JWT_SECRET as string;
+export const auth = async (req: Request, res: Response, next: NextFunction) => {
   let token = req.header("authorization");
   if (!token) {
     return res.status(403).json({
-      errors: [
-        {
-          msg: "Unauthorized",
-        },
-      ],
+      message: "Unauthorized",
     });
   }
   token = token.split(" ")[1];
   try {
-    const user = (await JWT.verify(
-      token,
-      process.env.JWT_SECRET as string
-    )) as {
+    const user = JWT.verify(token, secret) as {
       email: string;
     };
-
     req.user = user.email;
-
     next();
   } catch (error) {
+    console.log(error);
+
     return res.status(403).json({
-      errors: [
-        {
-          msg: "Unauthorized",
-        },
-      ],
+      message: "Unauthorized",
     });
   }
 };
